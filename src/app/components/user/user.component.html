@@ -1,41 +1,55 @@
-<h1 class="animated fadeIn">{{ user.name | uppercase }} <small>({{ user.company?.name }})</small></h1>
-<hr>
-
-<div class="row animated fadeIn fast">
-
-  <div class="col-md-4">
-
-    <!-- <img [src]="user.img" class="img-fluid" [alt]="user.nombre"> -->
-
-    <div class="card-body">
-        <h4 class="card-title">Email:{{ user.email }}</h4>
-        <p class="card-text">Ciudad: {{ user.address?.city }} </p>
-        <p class="card-text">Website: {{ user.website }} </p>
-
-        <p class="card-text"><small class="text-muted">Email: {{ user.email }}</small></p>
-        <p class="card-text"><small class="text-muted">Teléfono: {{ user.phone }}</small></p>
+<ng-container *ngIf="user else noUser" >
+    <h1 class="animated fadeIn">{{ user?.name | uppercase }} <small>({{ user?.company?.name }})</small></h1>
+    <hr>
+    
+    <div class="row animated fadeIn fast">
+    
+      <div class="col-md-4">
+    
+        <!-- <img [src]="user.img" class="img-fluid" [alt]="user.nombre"> -->
+    
+        <div class="card-body">
+            <h4 class="card-title">Email:{{ user?.email }}</h4>
+            <p class="card-text">Ciudad: {{ user?.address?.city }} </p>
+            <p class="card-text">Website: {{ user?.website }} </p>
+    
+            <p class="card-text"><small class="text-muted">Email: {{ user?.email }}</small></p>
+            <p class="card-text"><small class="text-muted">Teléfono: {{ user?.phone }}</small></p>
+        
+          </div>
+    
+    
+    
+        <br><br>
+        <a class="btn btn-outline-primary btn-block" (click)="getAlbums()" > Ver Albums</a>
+    
+        <a [routerLink]="['/usuarios']" class="btn btn-outline-danger btn-block">Regresar</a>
     
       </div>
-
-
-
-    <br><br>
-    <a [routerLink]="['/usuarios']" class="btn btn-outline-danger btn-block">Regresar</a>
-
-  </div>
-
-  <div class="col-md-8">
-    <h3>{{ user.nombre }}</h3>
-    <hr>
-    <p>
-      {{ user.bio }}
-    </p>
-    <div>
-  <!--     <img *ngIf="user.casa == 'Marvel'" class="img-logo" src="assets/img/marvel-logo.png" alt="DC">
-      <img *ngIf="user.casa == 'DC'" class="img-logo" src="assets/img/dc-logo.jpg" alt="Marvel"> -->
+    
+      <div class="col-md-8">
+        <h3>{{ user.nombre }}</h3>
+        <hr>
+        <p>
+          {{ user.bio }}
+        </p>
+        <div>
+      <!--     <img *ngIf="user.casa == 'Marvel'" class="img-logo" src="assets/img/marvel-logo.png" alt="DC">
+          <img *ngIf="user.casa == 'DC'" class="img-logo" src="assets/img/dc-logo.jpg" alt="Marvel"> -->
+        </div>
+    
+    
+      </div>
+    
     </div>
 
+</ng-container>
 
-  </div>
+<ng-template #noUser>
+    <h1 class="animated fadeIn">No existe el usuario</h1>
 
-</div>
+</ng-template>
+
+
+
+
