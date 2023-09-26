@@ -17,9 +17,6 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    console.log('Runing app componente');
-    
-    
   }
 
   ngOnDestroy(): void {

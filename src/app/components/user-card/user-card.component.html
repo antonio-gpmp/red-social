@@ -1,0 +1,14 @@
+<div class="card animated fadeIn fast" >
+    <!-- <img class="card-img-top img-fluid" [src]="user.img" [alt]="user.nombre"> -->
+    <div class="card-body">
+      <h4 class="card-title">Nombre:{{ user.username }}</h4>
+      <p class="card-text">Empresa: {{ user.company.name }} </p>
+      <p class="card-text"><small class="text-muted">Email: {{ user.email }}</small></p>
+      <p class="card-text"><small class="text-muted">Teléfono: {{ user.phone }}</small></p>
+  
+      <button (click)="showUser()"
+        type="button" class="btn btn-outline-primary btn-block">
+        Ver más...
+      </button>  
+    </div>
+  </div>
