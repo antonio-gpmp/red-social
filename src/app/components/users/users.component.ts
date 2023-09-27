@@ -23,9 +23,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  showUser(idx: number) {
-    console.log('users');
-    
+  showUser(idx: number) {    
     this.router.navigate(["/usuario", idx]);
   }
 }

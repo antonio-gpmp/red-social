@@ -21,7 +21,7 @@ export class UserCardComponent {
   }
 
   showUser() {
-    console.log('card');
+    console.log('user ', this.user);
     
     this.router.navigate( ['/usuario', this.userId] );
   }

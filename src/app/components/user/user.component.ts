@@ -24,6 +24,8 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe((user: any) => {
       this.user = user.user; // Asigna los datos resueltos a user
+      console.log('user in component ', this.user);
+      
     });
   }
 
