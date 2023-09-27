@@ -34,6 +34,4 @@ export class UserComponent implements OnInit {
 
   async getPhotosByAlbums() {}
 }
-function ngOnInit() {
-  throw new Error("Function not implemented.");
-}
+

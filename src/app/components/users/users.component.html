@@ -3,7 +3,7 @@
 
 
 <div class="card-columns">
-    <ng-container>
-        <app-user-card (showUser)="showUser(i)" [user]="foo" [index]="i"  *ngFor="let foo of users; index as i"></app-user-card> 
+    <ng-container *ngFor="let user of users; index as i">
+        <app-user-card (showUser)="showUser(user.id)" [user]="user" [userId]="user.id" ></app-user-card> 
     </ng-container>
 </div>

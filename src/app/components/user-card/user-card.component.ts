@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class UserCardComponent {
 
   @Input() user: any = {};
-  @Input() index: number | undefined;
+  @Input() userId: number | undefined;
 
   @Output() selectedUser: EventEmitter<number> | undefined;
 
@@ -21,7 +21,9 @@ export class UserCardComponent {
   }
 
   showUser() {
-    this.router.navigate( ['/usuario', this.index] );
+    console.log('card');
+    
+    this.router.navigate( ['/usuario', this.userId] );
   }
 
 
