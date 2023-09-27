@@ -2,7 +2,7 @@
 <hr>
 
 
-<div class="card-columns">
+<div class="">
     <ng-container *ngFor="let user of users; index as i">
         <app-user-card (showUser)="showUser(user.id)" [user]="user" [userId]="user.id" ></app-user-card> 
     </ng-container>

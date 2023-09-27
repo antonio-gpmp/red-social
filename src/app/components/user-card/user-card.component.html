@@ -1,14 +1,26 @@
-<div class="card animated fadeIn fast" >
-    <!-- <img class="card-img-top img-fluid" [src]="user.img" [alt]="user.nombre"> -->
-    <div class="card-body">
-      <h4 class="card-title">Nombre: {{ user.name }}</h4>
-      <p class="card-text">Empresa: {{ user.company.name }} </p>
-      <p class="card-text"><small class="text-muted">Email: {{ user.email }}</small></p>
-      <p class="card-text"><small class="text-muted">Teléfono: {{ user.phone }}</small></p>
-  
-      <button (click)="showUser()"
-        type="button" class="btn btn-outline-primary btn-block">
-        Ver más...
-      </button>  
+ <div class="flex justify-between gap-x-6 py-3 divide-y divide-gray-100 mx-3 block w-full px-4  border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+  <div class="flex min-w-0 gap-x-4">
+    <div *ngIf="user?.photo; else noPhoto">
+      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" [src]="user.photo" alt="">
     </div>
+    <ng-template #noPhoto>
+      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="assets/img/user.png" alt="">
+    </ng-template>
+    
+    <div class="min-w-0 flex-auto">
+      <p class="text-sm font-semibold leading-6 text-gray-900"> {{user.naem}}</p>
+      <p class="mt-1 truncate text-xs leading-5 text-gray-500"> {{user.email}}</p>
+    </div>
+    
   </div>
+  <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+    <p class="text-sm leading-6 text-gray-900">{{user?.company.name}}</p>
+    <p class="mt-1 text-xs leading-5 text-gray-500">{{user.phone}}</p>
+    <button (click)="showUser()" type="button" class="btn btn-outline-primary btn-block">
+      Ver más...
+    </button>  
+  </div>
+
+ </div>
+
+  
