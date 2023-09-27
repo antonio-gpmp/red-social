@@ -1,43 +1,39 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UsersService } from '../../services/users.service';
-import { AlbumsService } from '../../services/albums.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { UsersService } from "../../services/users.service";
+import { AlbumsService } from "../../services/albums.service";
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: "app-user",
+  templateUrl: "./user.component.html",
+  styleUrls: ["./user.component.scss"],
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
+  user: any = {};
 
-  user:any = {};
-  
-  albums:any = {};
+  albums: any = {};
   idAlbum: any;
 
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
+    private _userService: UsersService,
+    private _albumService: AlbumsService
+  ) {}
 
-  constructor( private activatedRoute: ActivatedRoute,
-               private _userService: UsersService,
-               private _albumService: AlbumsService
-    ){
-
-    this.activatedRoute.params.subscribe( async params =>{
-        this.user = await this._userService.getUser( params['id'] );
-        console.log('user ', this.user);
-        this.idAlbum = params['id']
-        
+  ngOnInit(): void {
+    this.route.data.subscribe((user: any) => {
+      this.user = user.user; // Asigna los datos resueltos a user
     });
-
-
-
   }
 
-
-  async getAlbums(){
+  async getAlbums() {
     this.albums = await this._albumService.getAlbums(this.idAlbum);
-    console.log('albums ', this.albums);
-    
+    console.log("albums ", this.albums);
   }
 
-
+  async getPhotosByAlbums() {}
+}
+function ngOnInit() {
+  throw new Error("Function not implemented.");
 }

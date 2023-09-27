@@ -11,11 +11,6 @@ export class UsersService {
 
   constructor() { }
 
-  async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    this.getUsers();
-  }
-
-
   /**
    * 
    * @returns 
@@ -24,7 +19,12 @@ export class UsersService {
     let users = null
     return axios.get('https://jsonplaceholder.typicode.com/users/')
       .then(response => {
-        return response.data; // Se devuelven los usuarios
+        if (response.status === 200) {
+          return response.data // Se devuelven los usuarios
+        } else {
+          console.error('Error en la solicitud: ', response.statusText);
+          return null;
+        }
       })
       .catch(error => {
         console.error('errror al obtener los usuarios ', error);

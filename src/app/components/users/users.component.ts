@@ -1,31 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { Users } from '../models/users.model';
-import { UsersService } from '../../services/users.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Users } from "../models/users.model";
+import { UsersService } from "../../services/users.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: "app-users",
+  templateUrl: "./users.component.html",
+  styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
+  users: Users[] = [];
 
-  users:Users[] = [];
-
-
-  constructor( private _usersService:UsersService,
-               private router:Router
-                ) {
-  }
-
+  constructor(
+    private _usersService: UsersService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
-    this.users = await this._usersService.getUsers();
-    console.log('users ', this.users);
+    this.activatedRoute.data.subscribe(({ users }) => {
+      this.users = users;
+    });
   }
 
-  showUser( idx:number ){
-    this.router.navigate( ['/usuario',idx] );
+  showUser(idx: number) {
+    this.router.navigate(["/usuario", idx]);
   }
-
 }
