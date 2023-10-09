@@ -42,14 +42,8 @@ export class UserComponent implements OnInit {
   }
 
 
-  imageLoaded() {
-    this.loading = false;
-  }
-
-  imageError() {
-    this.loading = false;
-    // Puedes manejar el error aquí, por ejemplo, estableciendo una imagen por defecto
-    this.album.photos[0].thumbnailUrl = '/assets/default-image.jpg'; // Cambia la ruta a la imagen por defecto
+  imageError(event: Event, album: any) {
+    album.photos[0].thumbnailUrl = '/assets/img/album.jpeg'; // Cambia la ruta a la imagen por defecto
   }
 
   async getPhotosByAlbums() {}
