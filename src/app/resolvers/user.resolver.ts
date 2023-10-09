@@ -1,12 +1,3 @@
-import { ResolveFn } from '@angular/router';
-
-export const userResolver: ResolveFn<boolean> = (route, state) => {
-  return true;
-};
-
-
-
-
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';

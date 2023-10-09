@@ -14,6 +14,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AccordionModule } from 'primeng/accordion';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    AccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

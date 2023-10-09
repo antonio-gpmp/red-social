@@ -1,52 +1,108 @@
 <ng-container *ngIf="user else noUser" >
-    <h1 class="animated fadeIn">{{ user?.name | uppercase }} <small>({{ user?.company?.name }})</small></h1>
-    <hr>
-    
-    <div class="row animated fadeIn fast">
-    
-      <div class="col-md-4">
-    
-        <!-- <img [src]="user.img" class="img-fluid" [alt]="user.nombre"> -->
-    
-        <div class="card-body">
-            <h4 class="card-title">Email:{{ user?.email }}</h4>
-            <p class="card-text">Ciudad: {{ user?.address?.city }} </p>
-            <p class="card-text">Website: {{ user?.website }} </p>
-    
-            <p class="card-text"><small class="text-muted">Email: {{ user?.email }}</small></p>
-            <p class="card-text"><small class="text-muted">Teléfono: {{ user?.phone }}</small></p>
-        
-          </div>
-    
-        <br><br>
-        <a class="btn btn-outline-primary btn-block" (click)="getAlbums()" > Ver Albums</a>
-    
-        <a [routerLink]="['/usuarios']" class="btn btn-outline-danger btn-block">Regresar</a>
-    
-      </div>
-    
-      <div class="col-md-8">
-        <h3>{{ user.nombre }}</h3>
-        <hr>
-        <p>
-          {{ user.bio }}
-        </p>
-        <div>
-      <!--     <img *ngIf="user.casa == 'Marvel'" class="img-logo" src="assets/img/marvel-logo.png" alt="DC">
-          <img *ngIf="user.casa == 'DC'" class="img-logo" src="assets/img/dc-logo.jpg" alt="Marvel"> -->
+
+    <div>
+        <div class="px-4 sm:px-0">
+          <h3 class="text-base font-semibold leading-7 text-gray-900">Información personal</h3>
+          <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
         </div>
+
+        <div class="mt-6 border-t border-gray-100">
+          <dl class="divide-y divide-gray-100">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">Nombre</dt>
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{user?.name}}</dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">User</dt>
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{user?.username}}</dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{user?.email}}</dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">Ciudad</dt>
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ user?.address?.city ? user?.address?.city : 'no indicada'}}</dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">Website</dt>
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ user?.website }}</dd>
+            </div>
+
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">Empresa</dt>
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ user?.company?.name }}</dd>
+            </div>
     
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-gray-900">Albums</dt>
+                <!-- class="divide-y divide-gray-100 rounded-md border border-gray-200" -->
+                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+
+                    <p-accordion class="w-full" *ngFor="let album of albums; index as i">
+                        <p-accordionTab>
+                            <ng-template pTemplate="header">
+                                <div class="flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+                                      </svg>                                      
+                                    <span class="vertical-align-middle ml-2">{{album.title}}</span>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="content">
+                                <div class="card mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                      <div class="col-md-4">
+                                        <img [src]="album.photos[0].thumbnailUrl" class="img-fluid rounded-start" alt="..." (load)="imageLoaded()" (error)="imageError()" loading="lazy">
+                                      </div>
+                                      <div class="col-md-8">
+                                        <div class="card-body">
+                                          <!-- <h5 class="card-title">Card title</h5> -->
+                                          <p class="card-text">Nombre de canción</p>
+                                          <p class="card-text"><small class="text-muted">{{album?.photos  ?  album?.photos.length : 'No tiene titulos el album' }}</small></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </ng-template>
+                        </p-accordionTab>
+                    </p-accordion>
+                </dd>
+            </div>
     
-      </div>
-    
+          </dl>
+        </div>
+
+        <div class="flex justify-center">
+            <a class="btn btn-outline-primary btn-block mr-5" (click)="getAlbums()" > Ver Albums</a>
+            <a [routerLink]="['/usuarios']" class="btn btn-outline-danger btn-block">Regresar</a>
+        </div>
+
+        
     </div>
+
+
 
 </ng-container>
 
 <ng-template #noUser>
-    <h1 class="animated fadeIn">No existe el usuario</h1>
-
+    <div>
+        <div class="px-4 sm:px-0 animated fadeIn">
+            <h3 class="text-base font-semibold leading-7 text-gray-900">Información personal</h3>
+            <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">No existe el usuario</p>
+        </div>
+    </div>
 </ng-template>
+
+
+
+
+
+
+
+
+
+
 
 
 
