@@ -15,6 +15,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccordionModule } from 'primeng/accordion';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { AccordionModule } from 'primeng/accordion';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    AccordionModule
+    AccordionModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
